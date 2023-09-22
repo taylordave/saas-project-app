@@ -1,2 +1,64 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% if current_user %>
+  <h3 class="pull-right">Organization: <%= @tenant.name %></h3>
+<% else %>
+  <div class="container-fluid p-5">
+    <div class="mb-4 bg-light round-3">
+      <div class="container-fluid py-5 text-center" id="jumbo-home">
+        <h2>Welcome to the Project Management Application!</h2>
+        <p class="lead">
+          You'll love managing your project with our SaaS application. Please take a look at our great plans
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center pb-5">
+    <div class="col-auto pe-5">
+      <div class="card">
+        <div class="card-header text-center">
+          Free Plan
+        </div>
+        <div class="card-body text-left">
+          <div class="features">
+            <ul>
+              <li>Unlimited file uploads</li>
+              <li>Responsive design</li>
+              <li>Access anywhere</li>
+              <li>1 project</li>
+            </ul>
+            <hr>
+            <div class="price text-center pb-3">
+              Price: Free
+            </div>
+          </div>
+          <div class="card-footer text-center pt-3">
+            <%= link_to 'Sign Up', new_user_registration_path(plan: 'free'), class: 'btn btn-primary sign-up' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="card">
+        <div class="card-header text-center">
+          Premium Plan
+        </div>
+        <div class="card-body">
+          <div class="features">
+            <ul>
+              <li>Unlimited file uploads</li>
+              <li>Responsive design</li>
+              <li>Access anywhere</li>
+              <li class='extra'>Unlimited projects</li>
+            </ul>
+          </div>
+          <hr>
+          <div class="price text-center pb-3">
+            Price: $20
+          </div>
+          <div class="card-footer text-center pt-3">
+            <%= link_to 'Sign Up', new_user_registration_path(plan: 'premium'), class: 'btn btn-primary sign-up' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
