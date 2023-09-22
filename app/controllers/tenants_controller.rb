@@ -25,6 +25,7 @@ class TenantsController < ApplicationController
 
     respond_to do |format|
       if @tenant.save
+        @tenant.members.create(user: current_user, roles: { admin: true })
         format.html { redirect_to tenant_url(@tenant), notice: "Tenant was successfully created." }
         format.json { render :show, status: :created, location: @tenant }
       else
@@ -58,13 +59,14 @@ class TenantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tenant
-      @tenant = Tenant.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tenant_params
-      params.require(:tenant).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tenant
+    @tenant = Tenant.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def tenant_params
+    params.require(:tenant).permit(:name)
+  end
 end

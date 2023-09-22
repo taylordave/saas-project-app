@@ -71,5 +71,9 @@ group :test do
 
 end
 
-# Add Devise for user authentication
+# Add Bootstrap 5
+gem "bootstrap", "~> 5.2.2"
+
+# Add the Devise gem and Bootstrap views
 gem "devise"
+gem "devise-bootstrap-views"
